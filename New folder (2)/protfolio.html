@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Von Jerric's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, readable font */
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8; /* Light gray background */
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth; /* For smooth scrolling on navigation links */
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    padding: 1.5em 2em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    position: fixed; /* Fixed navigation */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left; /* Align navigation to the left */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 1.5em;
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #007bff; /* A different accent color */
+}
+
+.hero {
+    background-color: #e9ecef; /* Light gray-blue */
+    padding: 6em 2em 4em; /* Increased top padding for fixed nav */
+}
+
+.hero-content {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 3em;
+}
+
+.hero-content .profile-side {
+    width: 180px; /* Slightly larger profile picture */
+    height: 180px;
+    border-radius: 10px; /* Slightly rounded corners */
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hero-content .text-content {
+    text-align: left;
+    flex-grow: 1;
+}
+
+.hero-content .text-content h1 {
+    color: #212529; /* Darker heading */
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+.hero-content .text-content p {
+    color: #495057;
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 1.5em;
+}
+
+.hero-content .text-content .buttons a {
+    display: inline-block;
+    padding: 1em 2em;
+    margin-right: 1em;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button.primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.button.primary:hover {
+    background-color: #0056b3;
+}
+
+.button.secondary {
+    border: 2px solid #007bff;
+    color: #007bff;
+}
+
+.button.secondary:hover {
+    background-color: #e9ecef;
+    color: #0056b3;
+}
+
+.about {
+    padding: 5em 2em;
+    background-color: #fff; /* White background for contrast */
+}
+
+.about h2 {
+    text-align: center;
+    color: #212529;
+    margin-bottom: 1.5em;
+    font-size: 2em;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two-column layout for about content */
+    gap: 2em;
+    align-items: center;
+}
+
+.about-content p {
+    color: #495057;
+    line-height: 1.7;
+}
+
+.about-content .social-links {
+    text-align: center; /* Center social links in About Me */
+    margin-top: 1.5em; /* Add some space above the links */
+}
+
+.about-content .social-links a {
+    margin: 0 0.8em;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.3em;
+    transition: color 0.3s ease;
+}
+
+.about-content .social-links a:hover {
+    color: #0056b3;
+}
+
+.projects {
+    padding: 5em 2em;
+    background-color: #f8f9fa; /* Light gray background */
+}
+
+.projects h2 {
+    text-align: center;
+    color: #212529;
+    margin-bottom: 1.5em;
+    font-size: 2em;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Slightly wider project items */
+    gap: 2.5em; /* Increased gap */
+    margin-top: 2em;
+}
+
+.project-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Clip rounded corners for image */
+    transition: transform 0.2s ease-in-out;
+}
+
+.project-item:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+.project-item img {
+    width: 100%;
+    height: auto;
+    display: block; /* Prevent extra space below image */
+}
+
+.project-item .project-info {
+    padding: 1.5em;
+    text-align: center;
+}
+
+.project-item h3 {
+    color: #212529;
+    margin-bottom: 0.5em;
+    font-size: 1.3em;
+}
+
+.project-item p {
+    color: #495057;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.contact {
+    padding: 5em 2em;
+    background-color: #fff;
+    text-align: center;
+}
+
+.contact h2 {
+    color: #212529;
+    margin-bottom: 1em;
+    font-size: 2em;
+}
+
+.contact p {
+    color: #495057;
+    font-size: 1.1em;
+    margin-bottom: 2em;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.contact .form-group {
+    margin-bottom: 1.5em;
+    text-align: left;
+}
+
+.contact label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #343a40;
+    font-weight: bold;
+}
+
+.contact input[type="text"],
+.contact input[type="email"],
+.contact textarea {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.contact textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.contact button[type="submit"] {
+    padding: 1em 2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.socials-section {
+    padding: 5em 2em;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.socials-section h2 {
+    color: #212529;
+    margin-bottom: 1.5em;
+    font-size: 2em;
+}
+
+.socials-section .social-links-list a {
+    display: inline-block;
+    margin: 0 1em;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.3em;
+    transition: color 0.3s ease;
+}
+
+.socials-section .social-links-list a:hover {
+    color: #0056b3;
+}
+
+footer {
+    background-color: #343a40; /* Dark footer */
+    color: #fff;
+    text-align: center;
+    padding: 1.5em 0;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.9em;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content .profile-side {
+        margin-bottom: 2em;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr; /* Stack about content on smaller screens */
+        text-align: center;
+    }
+
+    .about-content .social-links {
+        text-align: center;
+        margin-top: 1.5em;
+    }
+
+    nav ul {
+        text-align: center;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 0.8em 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 5em; /* Adjust top padding further for smaller screens */
+    }
+
+    .hero-content .text-content h1 {
+        font-size: 2em;
+    }
+
+    .hero-content .text-content p {
+        font-size: 1em;
+    }
+
+    .hero-content .text-content .buttons a {
+        padding: 0.8em 1.5em;
+        margin: 0.5em;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .socials-section .social-links-list a {
+        margin: 0.5em;
+    }
+
+    .contact form {
+        padding: 1.5em;
+    }
+}
+</style>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact Me</a></li>
+                <li><a href="#socials">Socials</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="acepic.jpg" alt="ace Profile Picture" class="profile-side">
+            <div class="text-content">
+                <h1>Hi, I'm Ace Leendon Sancal, an I.T Student.</h1>
+                <p>I am currently pursuing my studies in Information Technology. With a passion for technology and an eagerness to learn, I am dedicated to understanding the ever-evolving landscape of IT and its applications in solving real-world problems.</p>
+                <div class="buttons">
+                    <a href="#contact" class="button primary">Hire me !</a>
+                    <a href="#projects" class="button secondary">See My Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>Hello there! I'm Ace Leendon Sancal, a curious and driven 23-year-old currently navigating the exciting world of Information Technology as a third-year student. Born in the scenic town of Calo, Bay, Laguna, I'm now based in Batangas, Calabarzon, Philippines, eager to learn, innovate, and contribute to the ever-evolving tech landscape.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/aceleendon.sancal.02/">Facebook</a>
+                <a href="https://github.com/acer002">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <div class="project-item">
+                <img src="Picture1.jpg" alt="Project 1">
+                <h3>Task Performance Loops and Iterations</h3>
+                <p>Welcome to your ultimate guide to loops and iterations! This website is designed to take you on a journey through the core principles of repetitive execution in programming and computational thinking. You'll find clear and accessible explanations of different types of loops, including for loops for predictable sequences and while loops for conditional repetition. Explore real-world examples demonstrating how loops are used to process data, automate tasks, and build complex algorithms. Interactive exercises and visual aids will help solidify your understanding and empower you to effectively implement iterative solutions in your own projects. From the basics to more advanced techniques, this site equips you with the knowledge to harness the efficiency and elegance of loops.</p>
+            </div>
+            <div class="project-item">
+                <img src="pic.png" alt="Project 2">
+                <h3>Task Performance Media Query</h3>
+                <p>As the creator of this website dedicated to loops and iterations, I've poured my energy into crafting clear, concise, and engaging content to demystify these fundamental programming concepts. My work involves developing comprehensive explanations of for loops, while loops, and other iterative structures, supported by practical code examples, illustrative visualizations, and interactive exercises. The goal is to provide a valuable resource for learners of all levels, empowering them to understand and effectively utilize the power of repetition in their coding endeavors.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Hire Me</h2>
+        <p>Please fill out the form below to get in touch with me for potential opportunities.</p>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="button primary">Send Message</button>
+        </form>
+    </section>
+
+ <section id="socials" class="socials-section">
+        <h2>Connect With Me</h2>
+        <div class="social-links-list">
+            <a href="https://www.facebook.com/aceleendon.sancal.02/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.tiktok.com/@acesancal?lang=en" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <a href="https://github.com/acer002" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Ace Sancal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('header nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    scrollToSection(targetId);
+                });
+            });
+
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const message = document.getElementById('message').value.trim();
+
+                    if (!name || !email || !message) {
+                        formMessage.textContent = 'Please fill out all fields.';
+                        formMessage.className = 'form-message error';
+                        return;
+                    }
+
+                    if (!isValidEmail(email)) {
+                        formMessage.textContent = 'Please enter a valid email address.';
+                        formMessage.className = 'form-message error';
+                        return;
+                    }
+
+                   
+                    formMessage.textContent = 'Sending message...';
+                    formMessage.className = 'form-message sending';
+
+                    setTimeout(function() {
+                        formMessage.textContent = 'Message sent successfully!';
+                        formMessage.className = 'form-message success';
+                        contactForm.reset();
+                    }, 2000);
+                });
+            }
+
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+        });
+    </script>
+</body>
+</html>
